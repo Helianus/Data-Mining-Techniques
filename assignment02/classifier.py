@@ -126,7 +126,7 @@ def support_vector_machine(Xtrain, Xtest, ytrain, ytest, flag):
     return:
         ypred: result of the predict model
     """
-    svm = SVC(kernel="linear", C=0.025, random_state=101)
+    svm = SVC(kernel="linear", C=0.025, random_state=0)
     model = svm.fit(Xtrain, ytrain)
     ypred = model.predict(Xtest)
     
@@ -176,7 +176,7 @@ def random_forest(Xtrain, Xtest, ytrain, ytest, flag):
     return:
         ypred: result of the predict model
     """
-    rfr = RandomForestRegressor(n_jobs=-1, random_state=101)
+    rfr = RandomForestRegressor(n_jobs=-1, random_state=0)
     model = rfr.fit(Xtrain, ytrain)
     ypred = model.predict(Xtest)
     
@@ -202,7 +202,7 @@ def ada_boost(Xtrain, Xtest, ytrain, ytest, flag):
     return:
         ypred: result of the predict model
     """
-    abr = AdaBoostRegressor(learning_rate=0.05, loss="linear", n_estimators=100, random_state=101)
+    abr = AdaBoostRegressor(learning_rate=0.05, loss="linear", n_estimators=100, random_state=0)
     model = abr.fit(Xtrain, ytrain)
     ypred = model.predict(Xtest)
     
