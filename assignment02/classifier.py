@@ -5,6 +5,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
+
 
 k = 15 # a constant number, you can change it
 
@@ -157,5 +159,56 @@ def stochastic_gradient_descent(Xtrain, Xtest, ytrain, ytest, flag):
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
         print("Stochastic Gradient Descent: cross vali score", evalmark, " and accuracy score", accscore)
+    
+    return ypred
+
+def random_forest(Xtrain, Xtest, ytrain, ytest, flag):
+    """
+    Random Forest method
+    
+    param：
+        Xtrain: input train data
+        Xtest: input test data
+        ytrain: output train data
+        ytest: output test data
+        flag: True for print accuracy score, False for not
+
+    return:
+        ypred: result of the predict model
+    """
+    rfr = RandomForestRegressor(n_jobs=-1, random_state=101)
+    model = rfr.fit(Xtrain, ytrain)
+    ypred = model.predict(Xtest)
+    
+    accscore = accuracy_score(ytest, ypred)
+    evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
+    if flag == "True":
+        print("Random Forest: cross vali score", evalmark, " and accuracy score", accscore)
+    
+    return ypred
+
+
+def ada_boost(Xtrain, Xtest, ytrain, ytest, flag):
+    """
+    Ada Boost method
+    
+    param：
+        Xtrain: input train data
+        Xtest: input test data
+        ytrain: output train data
+        ytest: output test data
+        flag: True for print accuracy score, False for not
+
+    return:
+        ypred: result of the predict model
+    """
+    abr = AdaBoostRegressor(learning_rate=0.05, loss="linear", n_estimators=100, random_state=101)
+    model = abr.fit(Xtrain, ytrain)
+    ypred = model.predict(Xtest)
+    
+    accscore = accuracy_score(ytest, ypred)
+    evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
+    if flag == "True":
+        print("Ada Boost: cross vali score", evalmark, " and accuracy score", accscore)
     
     return ypred
