@@ -31,7 +31,7 @@ def gaussian_naive_bayes(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Gaussian Naive Bayes: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Gaussian Naive Bayes: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -56,7 +56,7 @@ def decision_tree(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Gaussian Naive Bayes: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Decision Tree: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -82,7 +82,7 @@ def logistic_regression(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Logistic Regression: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Logistic Regression: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -100,14 +100,14 @@ def k_nearest_neighbours(Xtrain, Xtest, ytrain, ytest, flag):
     return:
         ypred: result of the predict model
     """
-    knn = KNeighborsClassifier(n_neigbhors=15)
+    knn = KNeighborsClassifier()
     model = knn.fit(Xtrain, ytrain)
     ypred = model.predict(Xtest)
     
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("K Nearest Neighbours: cross vali score", evalmark, " and accuracy score", accscore)
+        print("K Nearest Neighbours: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -133,7 +133,7 @@ def support_vector_machine(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Support Vector Machine: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Support Vector Machine: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -158,7 +158,7 @@ def stochastic_gradient_descent(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Stochastic Gradient Descent: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Stochastic Gradient Descent: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -183,7 +183,7 @@ def random_forest(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Random Forest: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Random Forest: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
 
@@ -209,6 +209,6 @@ def ada_boost(Xtrain, Xtest, ytrain, ytest, flag):
     accscore = accuracy_score(ytest, ypred)
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
-        print("Ada Boost: cross vali score", evalmark, " and accuracy score", accscore)
+        print("Ada Boost: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
