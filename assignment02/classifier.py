@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
-
+from xgboost import XGBClassifier
 
 k = 15 # a constant number, you can change it
 
@@ -210,5 +210,30 @@ def ada_boost(Xtrain, Xtest, ytrain, ytest, flag):
     evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
     if flag == "True":
         print("Ada Boost: cross vali score", evalmark, ", accuracy score", accscore)
+    
+    return ypred
+
+def xg_boost(Xtrain, Xtest, ytrain, ytest, flag):
+    """
+    XGBoost method
+    
+    param：
+        Xtrain: input train data
+        Xtest: input test data
+        ytrain: output train data
+        ytest: output test data
+        flag: True for print accuracy score, False for not
+
+    return:
+        ypred: result of the predict model
+    """
+    xgb = XGBClassifier()
+    model = xgb.fit(Xtrain, ytrain)
+    ypred = model.predict(Xtest)
+    
+    accscore = accuracy_score(ytest, ypred)
+    evalmark = cross_val_score(model, Xtrain, ytrain, cv=k, scoring="accuracy").mean()
+    if flag == "True":
+        print("XGBoost: cross vali score", evalmark, ", accuracy score", accscore)
     
     return ypred
